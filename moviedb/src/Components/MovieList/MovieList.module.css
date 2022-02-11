@@ -2,5 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-    gap: 10px;
+    gap: 20px;
+}
+
+.title{
+    padding: 20px;
+    font-size: 36px;
+    font-weight: bold;
 }

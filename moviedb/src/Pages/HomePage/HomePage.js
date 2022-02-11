@@ -2,20 +2,30 @@ import s from './HomePage.module.css'
 import MovieList from "../../Components/MovieList/MovieList";
 import {useEffect, useState} from "react";
 import moviesService from "../../Services/movies.service";
+import UpComingMovies from "../../Components/UpComingMovies/UpComingMovies";
+import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 
 export default function HomePage(){
     const [popularMovie,setPopularMovie] = useState([])
     const [upComingMovie,setUpComingMovie] = useState([])
+    const [availableMovie,setAvailableMovie] = useState([])
     useEffect(()=>{
-        moviesService.getAllPopular().then(value=>setPopularMovie(value.results.slice(0,5)))
+        moviesService.getAllPopular().then(value=>setPopularMovie(value.results))
     },[])
     useEffect(()=>{
-        moviesService.getUpcoming().then(value=>setUpComingMovie(value.results.slice(0,8)))
+        moviesService.getUpcoming().then(value=>setUpComingMovie(value.results))
     },[])
+
     return(
         <div className={s.container}>
-            <MovieList movilist={upComingMovie} title={'UP COMING MOVIES'}/>
-            <MovieList movilist={popularMovie} title={'POPULAR MOVIES'}/>
+            <div className={s.wrap}>
+                <div className={s.first} >
+                    <UpComingMovies movilist={upComingMovie}/>
+                </div>
+                <div className={s.second} >
+                    <PopularMovies movilist={popularMovie}/>
+                </div>
+            </div>
         </div>
     )
 }

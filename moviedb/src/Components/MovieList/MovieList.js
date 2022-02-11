@@ -8,7 +8,7 @@ export default function MovieList({movilist,title}){
     },[movilist])
     return(
         <div>
-            <div>
+            <div className={s.title}>
                 {title ? title : null}
             </div>
             <div className={s.container}>
