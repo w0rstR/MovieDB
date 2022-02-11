@@ -1,0 +1,26 @@
+.container{
+    width: 300px;
+    height: 855px;
+    background-color: #61dafb;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navbar{
+    padding: 30px;
+}
+.navbarItem{
+    padding: 10px;
+    background-color: darkgray;
+    border-radius: 20px;
+    text-align: center;
+}
+.item{
+    color: white;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
