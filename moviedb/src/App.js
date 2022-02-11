@@ -7,17 +7,17 @@ import Layout from "./Components/Layout/Layout";
 import MoviesPage from "./Pages/MoviesPage/MoviesPage";
 import TvShopPage from "./Pages/TvShopPage/TvShopPage";
 import PeoplePage from "./Pages/PeoplePage/PeoplePage";
+import HomePage from "./Pages/HomePage/HomePage";
 
 function App() {
 
-  useEffect(()=>{
-      moviesService.getAllPopular().then(value => console.log(value))
-  })
+
 
   return (
     <div>
       <Routes>
           <Route path={'/'} element={<Layout/>}>
+              <Route index element={<HomePage/>}/>
               <Route path={'movies'} element={<MoviesPage/>}/>
               <Route path={'tv'} element={<TvShopPage/>}/>
               <Route path={'people'} element={<PeoplePage/>}/>
