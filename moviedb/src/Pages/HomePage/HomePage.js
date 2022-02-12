@@ -9,12 +9,14 @@ export default function HomePage(){
     const [popularMovie,setPopularMovie] = useState([])
     const [upComingMovie,setUpComingMovie] = useState([])
     const [availableMovie,setAvailableMovie] = useState([])
-    useEffect(()=>{
-        moviesService.getAllPopular().then(value=>setPopularMovie(value.results))
-    },[])
-    useEffect(()=>{
-        moviesService.getUpcoming().then(value=>setUpComingMovie(value.results))
-    },[])
+
+
+    // useEffect(()=>{
+    //     moviesService.getAllPopular().then(value=>setPopularMovie(value.results))
+    // },[])
+    // useEffect(()=>{
+    //     moviesService.getUpcoming().then(value=>setUpComingMovie(value.results))
+    // },[])
 
     return(
         <div className={s.container}>

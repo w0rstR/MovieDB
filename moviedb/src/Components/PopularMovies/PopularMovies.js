@@ -1,20 +1,34 @@
 import s from "./PopularMovies.module.css"
 import MovieItem from "../MovieItem/MovieItem";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getPopular} from "../../Store/movies/movie.slice";
 
-export default function PopularMovies({movilist}){
+export default function PopularMovies(){
     const [active,setActive]= useState(true)
     const [movieList,setMovieList] = useState()
+
+    const {popularMovie} = useSelector(state => state['movieReducer'])
+
+    const dispatch = useDispatch()
+
     useEffect(()=>{
-            setMovieList(movilist.slice(0,5))
-            console.log(movilist.slice(0,5))
-    },[movilist])
+       dispatch(getPopular())
+    },[])
+
+    useEffect(()=>{
+        if(popularMovie.results){
+            setMovieList(popularMovie.results.slice(0,5))
+        }
+    },[popularMovie])
+
+
 
     const showMore=()=>{
-        if(movilist.length==movieList.length){
+        if(popularMovie.results.length==movieList.length){
             setActive(false)
         }else {
-            setMovieList(movilist.slice(0,movieList.length+2))
+            setMovieList(popularMovie.results.slice(0,movieList.length+2))
         }
 
     }

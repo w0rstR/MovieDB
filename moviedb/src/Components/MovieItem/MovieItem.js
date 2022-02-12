@@ -7,7 +7,7 @@ export default function MovieItem({item}){
         <div>
             <div className={s.container}>
                 <div className={s.main}>
-                    <Link to={`movies/${item.id.toString()}`}>
+                    <Link to={`/movies/${item.id.toString()}`}>
                         <img className={s.image} src={`https://image.tmdb.org/t/p/w200${item.poster_path}`} alt="MovieItem"/>
                     </Link>
                 </div>

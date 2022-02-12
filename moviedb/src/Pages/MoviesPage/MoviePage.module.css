@@ -1,4 +1,1 @@
-.container{
-    background-color: grey;
-    height: 500px;
-}
+@import '~antd/dist/antd.css';

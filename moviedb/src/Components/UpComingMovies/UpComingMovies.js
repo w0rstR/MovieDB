@@ -1,20 +1,35 @@
 import s from "./UpComingMovies.module.css"
 import MovieItem from "../MovieItem/MovieItem";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getPopular, getUpComing} from "../../Store/movies/movie.slice";
 
-export default function UpComingMovies({movilist}){
+export default function UpComingMovies(){
     const [active,setActive]= useState(true)
     const [movieList,setMovieList] = useState()
+
+    const {upComigMovie} = useSelector(state => state['movieReducer'])
+
+    const dispatch = useDispatch()
+
     useEffect(()=>{
-        setMovieList(movilist.slice(0,7))
-        console.log(movilist.slice(0,5))
-    },[movilist])
+        dispatch(getUpComing())
+    },[])
+
+
+    useEffect(()=>{
+        if(upComigMovie.results){
+            setMovieList(upComigMovie.results.slice(0,5))
+        }
+    },[upComigMovie])
+
+
 
     const showMore=()=>{
-        if(movilist.length==movieList.length){
+        if(upComigMovie.results.length==movieList.length){
             setActive(false)
         }else {
-            setMovieList(movilist.slice(0,movieList.length+2))
+            setMovieList(upComigMovie.results.slice(0,movieList.length+2))
         }
 
     }
