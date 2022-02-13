@@ -1,5 +1,6 @@
 
 
 export const urls={
-    movie:"/movie"
+    movie:"/movie",
+    tv:"/tv"
 }

@@ -30,9 +30,8 @@ export const getById=createAsyncThunk(
     'movieSlice/getById',
     async ({id},{dispatch})=>{
         try {
-            console.log(id)
-            const movie = await moviesService.getById({id})
-            console.log(movie)
+            const movie = await moviesService.getById(id)
+            dispatch(setMovie({movie}))
         }catch (e) {
             console.log(e)
         }
@@ -58,7 +57,7 @@ const movieSlice = createSlice({
             state.upComigMovie = action.payload.movies
         },
         setMovie: (state, action) => {
-            console.log(action.payload.id)
+            state.movieItem = action.payload.movie
         }
     }
 

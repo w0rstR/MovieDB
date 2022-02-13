@@ -4,7 +4,7 @@ import s from './MovieList.module.css'
 
 export default function MovieList({moviList}){
     useEffect(()=>{
-        console.log(moviList)
+
     },[moviList])
     return(
         <div>

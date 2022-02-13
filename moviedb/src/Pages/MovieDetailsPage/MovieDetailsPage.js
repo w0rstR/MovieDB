@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import moviesService from "../../Services/movies.service";
 import MovieDetails from "../../Components/MovieDetails/MovieDetails";
 import {useDispatch, useSelector} from "react-redux";
-import {setMovie} from "../../Store/movies/movie.slice";
+import {getById, setMovie} from "../../Store/movies/movie.slice";
+import s from "./MovieDetailsPage.module.css"
 
 export default function MovieDetailsPage(){
     const {id} = useParams()
@@ -11,12 +12,13 @@ export default function MovieDetailsPage(){
 
     const dispatch = useDispatch()
 
+
     useEffect(()=>{
-        dispatch(setMovie({id}))
+        dispatch(getById({id}))
     },[id])
     return(
-        <div>
-            {/*{movie ? <MovieDetails item={movie}/>: null}*/}
+        <div className={s.container}>
+            {movieItem ? <MovieDetails item={movieItem}/>: null}
         </div>
     )
 }
