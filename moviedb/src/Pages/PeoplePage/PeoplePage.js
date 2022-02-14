@@ -1,38 +1,39 @@
-import s from './PeoplePage.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import peopleService from "../../Services/people.service";
-import {getAllPeople, getByTerm} from "../../Store/people/people.slice";
-import PeopleList from "../../Components/PeopleList/PeopleList";
 import Search from "antd/es/input/Search";
 import {Pagination} from "antd";
 
-export default function PeoplePage(){
+import s from "./PeoplePage.module.css"
+import {getAllPeople, getByTerm} from "../../Store/people/people.slice";
+import PeopleList from "../../Components/PeopleList/PeopleList";
+
+
+export default function PeoplePage() {
     const dispatch = useDispatch()
-    const {peopleList} = useSelector(state => state['peopleReducer'])
+    const {peopleList} = useSelector(state => state["peopleReducer"])
     const [pageId, setPageId] = useState(1)
     const [term, setTerm] = useState()
 
 
-    useEffect(()=>{
-       dispatch(getAllPeople())
-    },[])
+    useEffect(() => {
+        dispatch(getAllPeople())
+    }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getByTerm({term, pageId}))
-    },[term,pageId])
+    }, [term, pageId])
 
 
-    const onSearch=(search)=>{
-       setTerm(search)
+    const onSearch = (search) => {
+        setTerm(search)
     }
-    const onChange=(id)=>{
+    const onChange = (id) => {
         setPageId(id)
     }
-    return(
+    return (
         <div className={s.container}>
             <div>
-                <Pagination  showSizeChanger defaultCurrent={1} total={500} onChange={onChange}/>
+                <Pagination showSizeChanger defaultCurrent={1} total={500} onChange={onChange}/>
             </div>
             <div className={s.search}>
                 <Search

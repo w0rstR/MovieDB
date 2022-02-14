@@ -1,53 +1,50 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+
 import peopleService from "../../Services/people.service";
 
 
-
-
 export const getAllPeople = createAsyncThunk(
-    'peopleSlice/getAllPeople',
-    async (_,{dispatch})=>{
+    "peopleSlice/getAllPeople",
+    async (_, {dispatch}) => {
         try {
             const list = await peopleService.getAll()
             dispatch(setItems({list}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
 export const getByTerm = createAsyncThunk(
-    'peopleSlice/getByTerm',
-    async ({term,pageId},{dispatch})=>{
+    "peopleSlice/getByTerm",
+    async ({term, pageId}, {dispatch}) => {
         try {
-            console.log(term,pageId)
-            const list = await peopleService.getByName(term,pageId)
+            const list = await peopleService.getByName(term, pageId)
             dispatch(setItems({list}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
 export const getById = createAsyncThunk(
-    'peopleSlice/getById',
-    async({id},{dispatch})=>{
+    "peopleSlice/getById",
+    async ({id}, {dispatch}) => {
         try {
             const item = await peopleService.getById(id)
             dispatch(setItem({item}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
 
-
 const peopleSlice = createSlice({
-    name: 'peopleSlice',
+    name: "peopleSlice",
     initialState: {
         peopleList: [],
-        item:[]
+        item: []
     },
     reducers: {
         setItems: (state, action) => {
@@ -57,11 +54,10 @@ const peopleSlice = createSlice({
             state.item = action.payload.item
         },
 
-
     }
 
 
 })
 const peopleReducer = peopleSlice.reducer
 export default peopleReducer
-export const {setItems,setItem} = peopleSlice.actions
+export const {setItems, setItem} = peopleSlice.actions

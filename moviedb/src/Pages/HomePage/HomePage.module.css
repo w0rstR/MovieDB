@@ -1,6 +1,6 @@
 .container{
     width: 1690px;
-    border: 1px solid black;
+
 }
 .wrap{
     height: auto;
@@ -13,5 +13,5 @@
     display: flex;
 }
 .item{
-    border: 1px solid black;
+
 }

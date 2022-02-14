@@ -1,24 +1,24 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import moviesService from "../../Services/movies.service";
-import MovieDetails from "../../Components/MovieDetails/MovieDetails";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getById, setMovie} from "../../Store/movies/movie.slice";
+
+import MovieDetails from "../../Components/MovieDetails/MovieDetails";
+import {getById} from "../../Store/movies/movie.slice";
 import s from "./MovieDetailsPage.module.css"
 
-export default function MovieDetailsPage(){
+export default function MovieDetailsPage() {
     const {id} = useParams()
-    const {movieItem} = useSelector(state => state['movieReducer'])
+    const {movieItem} = useSelector(state => state["movieReducer"])
 
     const dispatch = useDispatch()
 
-
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getById({id}))
-    },[id])
-    return(
+    }, [id])
+
+    return (
         <div className={s.container}>
-            {movieItem ? <MovieDetails item={movieItem}/>: null}
+            {movieItem ? <MovieDetails item={movieItem}/> : null}
         </div>
     )
 }

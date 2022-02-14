@@ -1,8 +1,7 @@
-import s from "./PeopleDetails.module.css"
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import peopleService from "../../Services/people.service";
+
 import {getById} from "../../Store/people/people.slice";
 import PeopleDetailsItem from "../PeopleDetailsItem/PeopleDetailsItem";
 
@@ -13,12 +12,12 @@ export default function PeopleDetails() {
 
 
     useEffect(() => {
-        dispatch(getById(id))
+        dispatch(getById({id}))
     }, [id])
 
     return (
         <div>
-
+            {item ? <PeopleDetailsItem item={item}/> : null}
         </div>
     )
 }

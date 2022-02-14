@@ -1,24 +1,24 @@
-
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getById} from "../../Store/tv/tv.slice";
 import {useParams} from "react-router-dom";
+
+import {getById} from "../../Store/tv/tv.slice";
 import MovieDetails from "../../Components/MovieDetails/MovieDetails";
 
-export default function TvShowDetailsPage(){
+export default function TvShowDetailsPage() {
     const {id} = useParams()
-    const {tvItem} = useSelector(state => state['tvReducer'])
+    const {tvItem} = useSelector(state => state["tvReducer"])
 
     const dispatch = useDispatch()
 
 
-
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getById({id}))
-    },[id])
-    return(
+    }, [id])
+
+    return (
         <div>
-            {tvItem ? <MovieDetails item={tvItem}/>: null}
+            {tvItem ? <MovieDetails item={tvItem}/> : null}
         </div>
     )
 }

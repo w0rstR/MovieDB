@@ -3,51 +3,50 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import moviesService from "../../Services/movies.service";
 
 
-export const getAllGenres =createAsyncThunk(
-    'movieSlice/GetAllGenres',
-    async (_,{dispatch})=>{
+export const getAllGenres = createAsyncThunk(
+    "movieSlice/GetAllGenres",
+    async (_, {dispatch}) => {
         try {
             const genres = await moviesService.getAllGenres()
             dispatch(setGenres({genres}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
 
-
-export const getPopular=createAsyncThunk(
-    'movieSlice/GetPopular',
-    async (_,{dispatch})=>{
-        try{
+export const getPopular = createAsyncThunk(
+    "movieSlice/GetPopular",
+    async (_, {dispatch}) => {
+        try {
             const movies = await moviesService.getAllPopular()
             dispatch(setPopular({movies}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
-export const getUpComing=createAsyncThunk(
-    'movieSlice/getUpComing',
-    async (_,{dispatch})=>{
-        try{
+export const getUpComing = createAsyncThunk(
+    "movieSlice/getUpComing",
+    async (_, {dispatch}) => {
+        try {
             const movies = await moviesService.getUpComing()
             dispatch(setUpComing({movies}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
-export const getById=createAsyncThunk(
-    'movieSlice/getById',
-    async ({id},{dispatch})=>{
+export const getById = createAsyncThunk(
+    "movieSlice/getById",
+    async ({id}, {dispatch}) => {
         try {
             const movie = await moviesService.getById(id)
             dispatch(setMovie({movie}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
@@ -55,27 +54,26 @@ export const getById=createAsyncThunk(
 
 
 export const getByGanre = createAsyncThunk(
-    'movieSlice/getByGanre',
-    async ({genreId,pageId},{dispatch})=>{
+    "movieSlice/getByGanre",
+    async ({genreId, pageId}, {dispatch}) => {
         try {
-            const movies = await moviesService.getByGenres(genreId,pageId)
+            const movies = await moviesService.getByGenres(genreId, pageId)
             dispatch(setMovies({movies}))
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 )
 
 
-
 const movieSlice = createSlice({
-    name: 'movieSlice',
+    name: "movieSlice",
     initialState: {
         popularMovie: [],
         upComigMovie: [],
         movieList: [],
-        movieItem:[],
-        genres:[]
+        movieItem: [],
+        genres: []
     },
     reducers: {
         setPopular: (state, action) => {
@@ -87,11 +85,10 @@ const movieSlice = createSlice({
         setMovie: (state, action) => {
             state.movieItem = action.payload.movie
         },
-        setMovies: (state, action)=>{
+        setMovies: (state, action) => {
             state.movieList = action.payload.movies
-            console.log(action.payload.movies)
         },
-        setGenres:(state,action)=>{
+        setGenres: (state, action) => {
             state.genres = action.payload.genres
         }
     }
@@ -100,4 +97,4 @@ const movieSlice = createSlice({
 })
 const movieReducer = movieSlice.reducer
 export default movieReducer
-export const {setPopular,setUpComing,setMovie,setGenres,setMovies} = movieSlice.actions
+export const {setPopular, setUpComing, setMovie, setGenres, setMovies} = movieSlice.actions

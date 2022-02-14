@@ -1,13 +1,9 @@
 @import '~antd/dist/antd.css';
 .App {
   text-align: center;
-
+  background-color: #282c34;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -37,4 +33,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.active{
+  background-color: #1a0740;
+}
+.not-active{
+  background-color: lightgrey;
 }

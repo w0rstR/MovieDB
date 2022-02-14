@@ -1,16 +1,13 @@
-
-import {useEffect} from "react";
 import s from "./MovieDetails.module.css"
 
-export default function MovieDetails({item}){
+export default function MovieDetails({item}) {
 
-    useEffect(()=>{
-        console.log(item)
-    },[item])
-    return(
+    return (
         <div className={s.cotainer}>
             <div>
-                <img className={s.image}  src={item.poster_path ? `https://image.tmdb.org/t/p/w400${item.poster_path}` : `https://cringemdb.com/img/movie-poster-placeholder.png`}  alt="MovieItem"/>
+                <img className={s.image}
+                     src={item.poster_path ? `https://image.tmdb.org/t/p/w400${item.poster_path}` : `https://cringemdb.com/img/movie-poster-placeholder.png`}
+                     alt="MovieItem"/>
             </div>
             <div className={s.wrap}>
                 <h2>Title: {item.title}</h2>
