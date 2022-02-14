@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import moviesService from "../../Services/movies.service";
+
 import tvService from "../../Services/tv.service";
 
 // export const getPopular=createAsyncThunk(
@@ -44,7 +44,7 @@ export const getByTerm=createAsyncThunk(
     async({term},{dispatch})=>{
         try {
             const movies = await tvService.getByTerm(term)
-            dispatch(setTvs({movies}))
+            dispatch(setTvs({movies,term}))
         }catch (e) {
             console.log(e)
         }
@@ -63,6 +63,17 @@ export const getById = createAsyncThunk(
     }
 )
 
+export const getByPageId =createAsyncThunk(
+    'tvSlice/getByPageId',
+    async ({},{dispatch})=>{
+        try {
+
+        }catch (e) {
+            console.log(e)
+        }
+    }
+)
+
 
 
 
@@ -70,14 +81,17 @@ const tvSlice = createSlice({
     name: 'tvSlice',
     initialState: {
         tvList: [],
-        tvItem: []
+        tvItem: [],
+        term:'popular'
     },
     reducers: {
         setTvs: (state, action) => {
+            state.term = action.payload.term
             state.tvList = action.payload.movies
         },
         setTv: (state, action) => {
            state.tvItem = action.payload.movie
+
         }
 
     }

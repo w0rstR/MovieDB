@@ -10,6 +10,7 @@ import PeoplePage from "./Pages/PeoplePage/PeoplePage";
 import HomePage from "./Pages/HomePage/HomePage";
 import MovieDetailsPage from "./Pages/MovieDetailsPage/MovieDetailsPage";
 import TvShowDetailsPage from "./Pages/TvShowDetailsPage/TvShowDetailsPage";
+import PeopleDetails from "./Components/PeopleDetails/PeopleDetails";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
               <Route path={'/tv/:id'} element={<TvShowDetailsPage/>}/>
               <Route path={'tv'} element={<TvShopPage/>}/>
               <Route path={'people'} element={<PeoplePage/>}/>
+              <Route path={'/people/:id'} element={<PeopleDetails/>}/>
           </Route>
       </Routes>
     </div>

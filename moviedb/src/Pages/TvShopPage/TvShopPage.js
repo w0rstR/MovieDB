@@ -5,28 +5,24 @@ import MovieList from "../../Components/MovieList/MovieList";
 import Button from "../../Components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {getByTerm} from "../../Store/tv/tv.slice";
+import {Pagination} from "antd";
 
 export default function TvShopPage(){
-
-    const [list,setList]= useState()
-    const {tvList} = useSelector(state => state['tvReducer'])
+    const {tvList,term} = useSelector(state => state['tvReducer'])
+    const [pageId, setPageId] = useState(1)
     const dispatch = useDispatch()
 
     useEffect(()=>{
             dispatch(getByTerm({term:"popular"}))
     },[])
-    //
-    // const showItems=(term,e)=>{
-    //     const list = tvService.getByTerm(term).then(value => setList(value.results))
-    // }
+
+    const onChange=(page)=>{
+
+    }
 
     return(
         <div className={s.container}>
             <div className={s.wrap}>
-                {/*<button className={s.btn} onClick={()=>showItems('popular')}>Popular</button>*/}
-                {/*<button className={s.btn} onClick={()=>showItems('top_rated')}>Top Rated</button>*/}
-                {/*<button className={s.btn} onClick={()=>showItems('on_the_air')}>On the Air</button>*/}
-                {/*<button className={s.btn} onClick={()=>showItems('airing_today')}>Aring Today</button>*/}
                 <Button title={`Popular`} term={"popular"}/>
                 <Button title={`Top Rated`} term={"top_rated"}/>
                 <Button title={`On the Air`} term={"on_the_air"}/>
